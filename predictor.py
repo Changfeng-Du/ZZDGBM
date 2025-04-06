@@ -13,8 +13,8 @@ dev = pd.read_csv('dev_finally.csv')
 vad = pd.read_csv('vad_finally.csv')
 
 # Define feature names in the correct order (from PMML model)
-feature_names = ['smoker', 'sex','carace', 'drink','sleep','Hypertension', 'Dyslipidemia','HHR', 'RIDAGEYR', 
-                 'INDFMPIR', 'BMXBMI', 'LBXWBCSI', 'LBXRBCSI']
+feature_names = ['smoker', 'drink','sleep','Hypertension','HHR', 'NLR','LMR',
+                 'INDFMPIR',  'LBXWBCSI', 'LBXRBCSI','LBXPLTSI']
 
 # Streamlit user interface
 st.title("Co-occurrence of Myocardial Infarction and Stroke Predictor")
@@ -25,32 +25,27 @@ col1, col2 = st.columns(2)
 with col1:
     smoker = st.selectbox("Smoker:", options=[1, 2, 3], 
                          format_func=lambda x: "Never" if x == 1 else "Former" if x == 2 else "Current")
-    sex = st.selectbox("Sex:", options=[1, 2], 
-                       format_func=lambda x: "Female" if x == 1 else "Male")
-    carace = st.selectbox("Race/Ethnicity:", options=[1, 2, 3, 4, 5], 
-                         format_func=lambda x: "Mexican American" if x == 1 else "Other Hispanic" if x == 2 
-                         else "Non-Hispanic White" if x == 3 else "Non-Hispanic Black" if x == 4 else "Other Race")
     drink = st.selectbox("Alcohol Consumption:", options=[1, 2], 
                         format_func=lambda x: "No" if x == 2 else "Yes")
     sleep = st.selectbox("Sleep Problem:", options=[1, 2], 
                          format_func=lambda x: "Yes" if x == 1 else "No")
     Hypertension = st.selectbox("Hypertension:", options=[1, 2], 
                                 format_func=lambda x: "No" if x == 2 else "Yes")
-    Dyslipidemia = st.selectbox("Dyslipidemia:", options=[1, 2], 
-                                format_func=lambda x: "No" if x == 2 else "Yes")
-
 with col2:
   
     HHR = st.number_input("HHR Ratio:", min_value=0.23, max_value=1.67, value=1.0)
+    NLR = st.number_input("HHR Ratio:", min_value=0.01, max_value=5.0, value=1.0)
+    LMR = st.number_input("HHR Ratio:", min_value=0.01, max_value=20.0, value=3.0)
     RIDAGEYR = st.number_input("Age (years):", min_value=20, max_value=80, value=50)
-    INDFMPIR = st.number_input("Poverty Income Ratio:", min_value=0.0, max_value=5.0, value=2.0)
+    INDFMPIR = st.number_input("Poverty Income Ratio:", min_value=0.1, max_value=5.0, value=2.0)
     BMXBMI = st.number_input("Body Mass Index (kg/m²):", min_value=11.5, max_value=67.3, value=25.0)
-    LBXWBCSI = st.number_input("White Blood Cell Count (10^9/L):", min_value=1.4, max_value=117.2, value=6.0)
-    LBXRBCSI = st.number_input("Red Blood Cell Count (10^9/L):", min_value=2.52, max_value=7.9, value=3.0)
+    LBXWBCSI = st.number_input("White Blood Cell Count (10^9/L):", min_value=1.0, max_value=200.0, value=6.0)
+    LBXRBCSI = st.number_input("Red Blood Cell Count (10^9/L):", min_value=1.0, max_value=10.0, value=3.0)
+    LBXPLTSI = st.number_input("Platelet Cell Count (10^9/L):", min_value=1.0, max_value=1000.0, value=300.0)
 
 # Process inputs and make predictions
-feature_values = [smoker, sex, carace, drink, sleep, Hypertension, Dyslipidemia, HHR, RIDAGEYR, 
-                 INDFMPIR, BMXBMI, LBXWBCSI, LBXRBCSI]
+feature_values = [smoker, drink,sleep,Hypertension,HHR, NLR,LMR,
+                 INDFMPIR,  LBXWBCSI, LBXRBCSI,LBXPLTSI]
 
 if st.button("Predict"):
     # Create DataFrame with correct feature order
