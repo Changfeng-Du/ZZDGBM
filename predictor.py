@@ -32,8 +32,8 @@ with col1:
     Hypertension = st.selectbox("Hypertension:", options=[1, 2], 
                                 format_func=lambda x: "No" if x == 2 else "Yes")
     HHR = st.number_input("HHR Ratio:", min_value=0.23, max_value=1.67, value=1.0)
-    NLR = st.number_input("HHR Ratio:", min_value=0.01, max_value=5.0, value=1.0)
-    LMR = st.number_input("HHR Ratio:", min_value=0.01, max_value=20.0, value=3.0)
+    NLR = st.number_input("NLR Ratio:", min_value=0.01, max_value=5.0, value=1.0)
+    LMR = st.number_input("LMR Ratio:", min_value=0.01, max_value=20.0, value=3.0)
 with col2:
     RIDAGEYR = st.number_input("Age (years):", min_value=20, max_value=80, value=50)
     INDFMPIR = st.number_input("Poverty Income Ratio:", min_value=0.1, max_value=5.0, value=2.0)
