@@ -123,7 +123,7 @@ if st.button("Predict"):
     lime_explainer = LimeTabularExplainer(
         training_data=background.values,
         feature_names=feature_names,
-        class_names=['Comorbidity', 'Non-comorbidity'],
+        class_names=['Non-comorbidity', 'Comorbidity'],
         mode='classification'
     )
     
