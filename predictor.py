@@ -35,7 +35,7 @@ with col1:
     NLR = st.number_input("NLR Ratio:", min_value=0.01, max_value=10.0, value=1.97)
     
 with col2:
-    LMR = st.number_input("LMR Ratio:", min_value=0.01, max_value=20.0, value=2.8)
+    LMR = st.number_input("LMR Ratio:", min_value=0.01, max_value=20.0, value=5.8)
     INDFMPIR = st.number_input("Poverty Income Ratio:", min_value=0.1, max_value=5.0, value=0.9)
     LBXWBCSI = st.number_input("White Blood Cell Count (10^3/μL):", min_value=1.0, max_value=200.0, value=9.4)
     LBXRBCSI = st.number_input("Red Blood Cell Count (10^3/μL):", min_value=1.0, max_value=10.0, value=4.06)
