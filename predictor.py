@@ -123,13 +123,13 @@ if st.button("Predict"):
     lime_explainer = LimeTabularExplainer(
         training_data=background.values,
         feature_names=feature_names,
-        class_names=['Comorbidity', 'Non-comorbidity'],
+        class_names=['Non-comorbidity', 'Comorbidity'],
         mode='classification'
     )
     
     lime_exp = lime_explainer.explain_instance(
       data_row=input_df.values.flatten(),
-      predict_fn=lambda x: 1-pmml_predict(x)  # 反转概率
+      predict_fn=lambda x: pmml_predict(x)  # 反转概率
     )
     
     # Display LIME explanation
