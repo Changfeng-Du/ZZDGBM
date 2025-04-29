@@ -51,8 +51,8 @@ if st.button("Predict"):
     
     # Make prediction
     prediction = pmml_model.predict(input_df)
-    prob_0 = prediction['probability(1)'][0]
-    prob_1 = prediction['probability(0)'][0]
+    prob_0 = prediction['probability(0)'][0]
+    prob_1 = prediction['probability(1)'][0]
     
     # Determine predicted class
     predicted_class = 1 if prob_1 > 0.436018256400085 else 0
@@ -103,14 +103,14 @@ if st.button("Predict"):
     st.subheader("SHAP Force Plot Explanation")
     plt.figure()
     if predicted_class == 1:
-        shap.force_plot(explainer.expected_value[0], 
-                       shap_values[0,:,0],  # Take SHAP values for class 1
+        shap.force_plot(explainer.expected_value[1], 
+                       shap_values[0,:,1],  # Take SHAP values for class 1
                        input_df.iloc[0],
                        matplotlib=True,
                        show=False)
     else:
-        shap.force_plot(explainer.expected_value[1], 
-                       shap_values[0,:,1],  # Take SHAP values for class 0
+        shap.force_plot(explainer.expected_value[0], 
+                       shap_values[0,:,0],  # Take SHAP values for class 0
                        input_df.iloc[0],
                        matplotlib=True,
                        show=False)
