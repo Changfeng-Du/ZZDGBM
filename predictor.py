@@ -103,13 +103,13 @@ if st.button("Predict"):
     st.subheader("SHAP Force Plot Explanation")
     plt.figure()
     if predicted_class == 1:
-        shap.force_plot(explainer.expected_value[1], 
+        shap.force_plot(explainer.expected_value[0], 
                        shap_values[0,:,1],  # Take SHAP values for class 1
                        input_df.iloc[0],
                        matplotlib=True,
                        show=False)
     else:
-        shap.force_plot(explainer.expected_value[0], 
+        shap.force_plot(explainer.expected_value[1], 
                        shap_values[0,:,0],  # Take SHAP values for class 0
                        input_df.iloc[0],
                        matplotlib=True,
@@ -123,7 +123,7 @@ if st.button("Predict"):
     lime_explainer = LimeTabularExplainer(
         training_data=background.values,
         feature_names=feature_names,
-        class_names=['Comorbidity', 'Non-comorbidity'],
+        class_names=['Non-comorbidity', 'Comorbidity'],
         mode='classification'
     )
     
