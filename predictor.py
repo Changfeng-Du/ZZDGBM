@@ -25,7 +25,7 @@ col1, col2 = st.columns(2)
 with col1:
     smoker = st.selectbox("Smoker:", options=[1, 2, 3], 
                          format_func=lambda x: "Never" if x == 1 else "Former" if x == 2 else "Current")
-    drink = st.selectbox("Alcohol Consumption:", options=[1, 2], 
+    drink = st.selectbox("Drink:", options=[1, 2], 
                         format_func=lambda x: "No" if x == 2 else "Yes")
     sleep = st.selectbox("Sleep Problem:", options=[1, 2], 
                          format_func=lambda x: "Yes" if x == 1 else "No")
