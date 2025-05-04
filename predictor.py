@@ -13,7 +13,7 @@ dev = pd.read_csv('dev_finally.csv')
 vad = pd.read_csv('vad_finally.csv')
 
 # Define feature names in the correct order (from PMML model)
-feature_names = ['smoker', 'drink','sleep','Hypertension','HHR', 'NLR','LMR',
+feature_names = ['smoker', 'drink','sleep','Hypertension','HRR', 'NLR','LMR',
                  'INDFMPIR',  'LBXWBCSI', 'LBXRBCSI','LBXPLTSI']
 
 # Streamlit user interface
@@ -31,7 +31,7 @@ with col1:
                          format_func=lambda x: "Yes" if x == 1 else "No")
     Hypertension = st.selectbox("Hypertension:", options=[1, 2], 
                                 format_func=lambda x: "No" if x == 2 else "Yes")
-    HHR = st.number_input("HRR Ratio:", min_value=0.23, max_value=5.0, value=0.62)
+    HRR = st.number_input("HRR Ratio:", min_value=0.23, max_value=5.0, value=0.62)
     NLR = st.number_input("NLR Ratio:", min_value=0.01, max_value=10.0, value=5.22)
     
 with col2:
@@ -42,7 +42,7 @@ with col2:
     LBXPLTSI = st.number_input("Platelet Cell Count (10^3/μL):", min_value=1.0, max_value=1000.0, value=253.0)
 
 # Process inputs and make predictions
-feature_values = [smoker, drink,sleep,Hypertension,HHR, NLR,LMR,
+feature_values = [smoker, drink,sleep,Hypertension,HRR, NLR,LMR,
                  INDFMPIR,  LBXWBCSI, LBXRBCSI,LBXPLTSI]
 
 if st.button("Predict"):
